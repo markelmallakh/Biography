@@ -28,9 +28,11 @@ try {
   git('worktree', 'prune')
   git('worktree', 'add', '--detach', WORKTREE)
 
-  execFileSync('rsync', ['-a', '--delete', '--exclude', '.git', 'dist/', `${WORKTREE}/`], {
-    stdio: 'inherit',
-  })
+  execFileSync(
+    'rsync',
+    ['-a', '--delete', '--exclude', '.git', '--exclude', '.DS_Store', 'dist/', `${WORKTREE}/`],
+    { stdio: 'inherit' }
+  )
 
   // Tell Pages not to run the output through Jekyll, which skips `_`-prefixed files.
   execFileSync('touch', [`${WORKTREE}/.nojekyll`])
