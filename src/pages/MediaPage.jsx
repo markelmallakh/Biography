@@ -7,6 +7,7 @@ import ParallaxImage from '../components/ui/ParallaxImage.jsx'
 import FooterSection from '../components/FooterSection.jsx'
 import SectionReveal from '../components/SectionReveal.jsx'
 import { categories, posts } from '../data/posts.js'
+import { withBase } from '../lib/paths.js'
 
 export default function MediaPage() {
   const [filter, setFilter] = useState('ALL')
@@ -54,7 +55,7 @@ export default function MediaPage() {
 function FeaturedPost({ post }) {
   return (
     <Reveal className="flex flex-col gap-10 lg:flex-row lg:items-center lg:gap-14">
-      <a href={`/media/${post.slug}`} className="group block w-full lg:w-[56%]">
+      <a href={withBase(`/media/${post.slug}`)} className="group block w-full lg:w-[56%]">
         <ParallaxImage src={post.image} alt="" className="aspect-[16/10] w-full" strength={40} hover />
       </a>
 
@@ -62,14 +63,14 @@ function FeaturedPost({ post }) {
         <PostMeta post={post} />
         <div className="flex flex-col gap-2">
           <h2 className="text-m-h2 font-bold leading-[1.2] text-primary-black lg:text-h3">
-            <a href={`/media/${post.slug}`} className="transition-colors hover:text-rose-120">
+            <a href={withBase(`/media/${post.slug}`)} className="transition-colors hover:text-rose-120">
               {post.title}
             </a>
           </h2>
           <p className="text-regular-light font-light text-text-secondary-dark">{post.excerpt}</p>
         </div>
         <a
-          href={`/media/${post.slug}`}
+          href={withBase(`/media/${post.slug}`)}
           className="group flex w-fit items-center gap-2 text-regular-light font-light text-text-secondary-dark"
         >
           READ MORE

@@ -1,11 +1,12 @@
 import ParallaxImage from './ui/ParallaxImage.jsx'
 import { tagStyles } from '../data/posts.js'
+import { withBase } from '../lib/paths.js'
 
 /** The one media-centre card — used by the grid, the home page teaser and "Read Also". */
 export default function PostCard({ post, className = '' }) {
   return (
     <article className={`flex flex-col gap-6 ${className}`}>
-      <a href={`/media/${post.slug}`} className="group flex flex-col gap-6">
+      <a href={withBase(`/media/${post.slug}`)} className="group flex flex-col gap-6">
         <PostMeta post={post} />
 
         <div className="flex flex-col">

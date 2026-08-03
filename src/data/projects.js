@@ -313,3 +313,12 @@ export const projects = [
 ]
 
 export const getProject = (slug) => projects.find((p) => p.slug === slug)
+
+/*
+ * Every project link points at Bayside for now. Bayside is the reference detail
+ * page: once Strapi supplies the per-project content, the other three get the
+ * same page shape with their own data, and this collapses back to
+ * `/projects/${slug}`.
+ */
+export const REFERENCE_PROJECT = 'bayside'
+export const projectHref = () => `/projects/${REFERENCE_PROJECT}`

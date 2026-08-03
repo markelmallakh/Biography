@@ -11,7 +11,8 @@ import Reveal from './Reveal.jsx'
 import ParallaxImage from './ui/ParallaxImage.jsx'
 import Cta from './ui/Cta.jsx'
 import Cursor from './ui/Cursor.jsx'
-import { projects } from '../data/projects.js'
+import { projects, projectHref } from '../data/projects.js'
+import { withBase } from '../lib/paths.js'
 
 // Loads an image into a tiny offscreen canvas — cropped to the frame's aspect the
 // same way `object-cover` does — so we can read the luminance (0 = black … 1 = white)
@@ -103,7 +104,7 @@ export function StackCard({ card, index, total, progress }) {
 }
 
 export function PropertyCard({ slug, name, location, type, desc, large, smalls, logo, dark }) {
-  const href = `/projects/${slug}`
+  const href = projectHref(slug)
   const muted = dark ? 'text-text-secondary-light' : 'text-text-secondary-dark'
   const pillBg = dark ? 'bg-gray-dark-8' : 'bg-gray-.5'
 
@@ -158,7 +159,7 @@ export function PropertyCard({ slug, name, location, type, desc, large, smalls, 
   const LargeImage = (
     <a
       ref={largeRef}
-      href={href}
+      href={withBase(href)}
       className={`group relative block h-[260px] w-full shrink-0 sm:h-[380px] lg:h-[517px] lg:w-[620px] ${dark ? 'lg:order-2' : ''}`}
     >
       <ParallaxImage src={large} alt={name} className="h-full w-full" hover />
@@ -199,7 +200,7 @@ export function PropertyCard({ slug, name, location, type, desc, large, smalls, 
           </span>
           <p className={`max-w-[604px] text-regular-light font-light ${muted}`}>{desc}</p>
         </div>
-        <Cta variant="rose" size="small" label={`Explore ${name}`} href={href} className="w-fit" />
+        <Cta variant="rose" size="small" label={`Explore ${name}`} href={withBase(href)} className="w-fit" />
       </div>
       <div className="flex items-end justify-between gap-4 lg:gap-6">
         {SmallImages}

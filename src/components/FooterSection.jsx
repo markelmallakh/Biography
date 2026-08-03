@@ -1,6 +1,7 @@
 import Cursor from './ui/Cursor.jsx'
 import AttalBadge from './AttalBadge.jsx'
-import { projects } from '../data/projects.js'
+import { projects, projectHref } from '../data/projects.js'
+import { withBase } from '../lib/paths.js'
 
 const columns = [
   {
@@ -14,7 +15,7 @@ const columns = [
   },
   {
     title: 'Projects',
-    links: projects.map((p) => ({ label: p.name, href: `/projects/${p.slug}` })),
+    links: projects.map((p) => ({ label: p.name, href: projectHref(p.slug) })),
   },
 ]
 
@@ -35,7 +36,7 @@ export default function FooterSection() {
                 <ul className="flex flex-col gap-2.5 text-lg-normal font-medium text-primary-white sm:gap-4">
                   {col.links.map((l) => (
                     <li key={l.label}>
-                      <a href={l.href} className="transition-colors hover:text-primary-rose">{l.label}</a>
+                      <a href={withBase(l.href)} className="transition-colors hover:text-primary-rose">{l.label}</a>
                     </li>
                   ))}
                 </ul>
@@ -45,8 +46,8 @@ export default function FooterSection() {
             <div className="flex flex-col gap-3 sm:gap-4">
               <p className="text-lg-light font-light text-primary-rose">Support</p>
               <div className="flex flex-col gap-2.5 text-lg-normal font-medium text-primary-white sm:gap-4">
-                <a href="/contact" className="transition-colors hover:text-primary-rose">Contact Us</a>
-                <a href="/faqs" className="transition-colors hover:text-primary-rose">FAQs</a>
+                <a href={withBase('/contact')} className="transition-colors hover:text-primary-rose">Contact Us</a>
+                <a href={withBase('/faqs')} className="transition-colors hover:text-primary-rose">FAQs</a>
                 <a href="mailto:info@biography.com" className="flex items-center gap-1.5 transition-colors hover:text-primary-rose">
                   <MailIcon /> info@biography.com
                 </a>

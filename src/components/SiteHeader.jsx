@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { headerLinks, navLinks, contactPhone } from '../data/navLinks.js'
 import Cta from './ui/Cta.jsx'
+import { withBase } from '../lib/paths.js'
 
 const logo = '/assets/Biography-logo.svg'
 
@@ -68,7 +69,7 @@ export default function SiteHeader({ currentPage = 'HOME', overHero = false }) {
       }}
     >
       <div className="flex items-center justify-between gap-8 px-4 py-3 lg:px-[60px]">
-        <a href="/" aria-label="Biography — home" className="shrink-0">
+        <a href={withBase('/')} aria-label="Biography — home" className="shrink-0">
           <img src={logo} alt="Biography" className="logo-white h-8 w-auto lg:h-9" />
         </a>
 
@@ -76,7 +77,7 @@ export default function SiteHeader({ currentPage = 'HOME', overHero = false }) {
           {headerLinks.map((link) => (
             <a
               key={link.label}
-              href={link.href}
+              href={withBase(link.href)}
               aria-current={link.label === currentPage ? 'page' : undefined}
               className="group relative text-regular-normal font-medium uppercase tracking-[0.02em] text-white"
             >
@@ -126,7 +127,7 @@ export default function SiteHeader({ currentPage = 'HOME', overHero = false }) {
               {navLinks.map((link) => (
                 <li key={link.label}>
                   <a
-                    href={link.href}
+                    href={withBase(link.href)}
                     onClick={() => setOpen(false)}
                     className="text-[24px] font-light text-white transition-colors hover:text-primary-rose"
                   >

@@ -5,6 +5,7 @@ import FooterSection from '../components/FooterSection.jsx'
 import SectionReveal from '../components/SectionReveal.jsx'
 import { JobMeta } from '../components/JobMeta.jsx'
 import { culture, jobs } from '../data/careers.js'
+import { withBase } from '../lib/paths.js'
 
 export default function CareersPage() {
   return (
@@ -96,7 +97,7 @@ function OpenPositions() {
 function JobRow({ job }) {
   return (
     <a
-      href={`/careers/${job.slug}`}
+      href={withBase(`/careers/${job.slug}`)}
       className="group flex flex-col gap-5 bg-primary-white p-6 transition-shadow duration-300 hover:shadow-[0_16px_40px_rgba(51,49,50,0.12)] lg:flex-row lg:items-center lg:gap-10"
     >
       <div className="flex flex-1 flex-col gap-3">

@@ -2,6 +2,7 @@ import Reveal from '../components/Reveal.jsx'
 import FooterSection from '../components/FooterSection.jsx'
 import SectionReveal from '../components/SectionReveal.jsx'
 import { JobMeta } from '../components/JobMeta.jsx'
+import { withBase } from '../lib/paths.js'
 
 export default function CareerPage({ job }) {
   return (
@@ -9,7 +10,7 @@ export default function CareerPage({ job }) {
       <section className="bg-primary-offwhite px-4 pb-20 pt-[130px] lg:px-[60px]">
         <Reveal className="mx-auto w-full max-w-[800px] bg-primary-white p-8 lg:p-12">
           <a
-            href="/careers"
+            href={withBase('/careers')}
             className="group flex w-fit items-center gap-2 text-small-normal font-medium uppercase tracking-[0.06em] text-text-secondary-dark transition-colors hover:text-primary-black"
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transition-transform duration-300 group-hover:-translate-x-1">
@@ -34,7 +35,7 @@ export default function CareerPage({ job }) {
           </Block>
 
           <a
-            href="/contact"
+            href={withBase('/contact')}
             className="group mt-10 flex h-[42px] w-fit items-center justify-between gap-8 rounded-[4px] bg-primary-rose px-4 text-small-normal font-medium uppercase tracking-[0.04em] text-primary-black transition-colors duration-300 hover:bg-rose-120 hover:text-primary-white"
           >
             Apply Now

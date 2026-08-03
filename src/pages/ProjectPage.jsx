@@ -16,6 +16,7 @@ import Masterplan from '../components/project/Masterplan.jsx'
 import ProgressTimeline from '../components/project/ProgressTimeline.jsx'
 import Gallery from '../components/project/Gallery.jsx'
 import TabTransition from '../components/ui/TabTransition.jsx'
+import { withBase } from '../lib/paths.js'
 
 export default function ProjectPage({ project }) {
   const d = project.detail
@@ -430,7 +431,7 @@ function EnquiryBand({ project }) {
             </svg>
           </button>
           <p className="text-small-light font-light text-text-secondary-dark">
-            By submitting, you agree to our <a href="/#terms" className="underline">Terms &amp; Conditions.</a>
+            By submitting, you agree to our <a href={withBase('/#terms')} className="underline">Terms &amp; Conditions.</a>
           </p>
         </form>
       </Reveal>

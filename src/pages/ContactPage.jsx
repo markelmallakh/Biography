@@ -5,6 +5,7 @@ import FooterSection from '../components/FooterSection.jsx'
 import SectionReveal from '../components/SectionReveal.jsx'
 import { projects } from '../data/projects.js'
 import { contactPhone } from '../data/navLinks.js'
+import { withBase } from '../lib/paths.js'
 
 const offices = [
   {
@@ -60,7 +61,7 @@ export default function ContactPage() {
               </button>
               <p className="text-small-light font-light text-text-secondary-dark">
                 By submitting, you agree to our{' '}
-                <a href="/#terms" className="underline">Terms &amp; Conditions.</a>
+                <a href={withBase('/#terms')} className="underline">Terms &amp; Conditions.</a>
               </p>
             </form>
           </div>

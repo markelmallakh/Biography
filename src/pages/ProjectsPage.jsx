@@ -6,7 +6,7 @@ import Coverflow from '../components/about/Coverflow.jsx'
 import { StackCard } from '../components/PortfolioSection.jsx'
 import FooterSection from '../components/FooterSection.jsx'
 import SectionReveal from '../components/SectionReveal.jsx'
-import { projects } from '../data/projects.js'
+import { projects, projectHref } from '../data/projects.js'
 
 export default function ProjectsPage() {
   const stackRef = useRef(null)
@@ -29,7 +29,7 @@ export default function ProjectsPage() {
         </div>
 
         <Coverflow
-          images={projects.map((p) => ({ src: p.large, logo: p.logo, name: p.name, href: `/projects/${p.slug}` }))}
+          images={projects.map((p) => ({ src: p.large, logo: p.logo, name: p.name, href: projectHref(p.slug) }))}
           className="mt-[-5.95%]"
         />
       </section>

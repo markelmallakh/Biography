@@ -1,3 +1,5 @@
+import { withBase } from '../../lib/paths.js'
+
 // Unified CTA button — matches the Figma button component and its hover states.
 // Hover = color swap (Figma): rose→white, white→black, outline→black fill, outlineWhite→white fill.
 
@@ -38,7 +40,7 @@ function Arrow({ size }) {
 export default function Cta({ label, href = '#', variant = 'rose', size = 'medium', className = '', ...rest }) {
   return (
     <a
-      href={href}
+      href={withBase(href)}
       className={`group inline-flex max-sm:w-full items-center justify-between rounded-[4px] font-medium uppercase tracking-[0.04em] transition-colors duration-300 ease-out ${sizes[size]} ${variants[variant]} ${className}`}
       {...rest}
     >

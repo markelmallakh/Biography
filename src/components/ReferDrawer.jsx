@@ -2,6 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useState } from 'rea
 import { AnimatePresence, motion, useDragControls } from 'framer-motion'
 import Field from './ui/Field.jsx'
 import Cursor from './ui/Cursor.jsx'
+import { withBase } from '../lib/paths.js'
 
 const ReferContext = createContext(() => {})
 
@@ -165,7 +166,7 @@ function Drawer({ onClose }) {
               </button>
               <p className="text-small-light font-light text-text-secondary-dark">
                 By submitting, you agree to our{' '}
-                <a href="/#terms" className="underline">Terms &amp; Conditions.</a>
+                <a href={withBase('/#terms')} className="underline">Terms &amp; Conditions.</a>
               </p>
             </div>
           </form>

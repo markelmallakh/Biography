@@ -1,17 +1,21 @@
 import { useEffect, useState } from 'react'
 import { getLenis } from './useSmoothScroll.js'
+import { stripBase } from '../lib/paths.js'
 
 /**
  * Minimal pathname router — the site only has a handful of pages, so this avoids
  * pulling in a routing library. Same-origin links are handled with pushState;
  * a hash on the target URL scrolls there once the new page has rendered.
+ *
+ * Routes are base-relative: under GitHub Pages the browser's pathname carries
+ * the `/Biography/` prefix, which `stripBase` removes before matching.
  */
 export default function useRoute() {
-  const [path, setPath] = useState(() => normalize(window.location.pathname))
+  const [path, setPath] = useState(() => stripBase(window.location.pathname))
   const [pendingHash, setPendingHash] = useState('')
 
   useEffect(() => {
-    const onPop = () => setPath(normalize(window.location.pathname))
+    const onPop = () => setPath(stripBase(window.location.pathname))
     window.addEventListener('popstate', onPop)
     return () => window.removeEventListener('popstate', onPop)
   }, [])
@@ -25,10 +29,10 @@ export default function useRoute() {
       const url = new URL(link.href, window.location.href)
       if (url.origin !== window.location.origin) return
 
-      const next = normalize(url.pathname)
+      const next = stripBase(url.pathname)
       e.preventDefault()
 
-      if (next === normalize(window.location.pathname)) {
+      if (next === stripBase(window.location.pathname)) {
         if (url.hash) scrollToHash(url.hash)
         return
       }
@@ -51,11 +55,6 @@ export default function useRoute() {
   }, [path]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return path
-}
-
-function normalize(pathname) {
-  const trimmed = pathname.replace(/\/+$/, '')
-  return trimmed === '' ? '/' : trimmed
 }
 
 function scrollToHash(hash) {
