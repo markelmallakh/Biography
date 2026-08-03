@@ -73,7 +73,7 @@ export default function GetInTouchSection() {
           </p>
         </Reveal>
 
-        <Reveal delay={0.15} className="mt-10">
+        <Reveal delay={0.15} className="mt-10 w-full sm:w-auto">
           <Cta variant="rose" size="large" label="Let’s Talk" href="/contact" />
         </Reveal>
       </div>

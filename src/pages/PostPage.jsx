@@ -60,7 +60,7 @@ export default function PostPage({ post }) {
             ))}
           </div>
 
-          <Reveal delay={0.1}>
+          <Reveal delay={0.1} className="w-full sm:w-auto">
             <Cta label="Read More" variant="outline" href="/media" />
           </Reveal>
         </section>

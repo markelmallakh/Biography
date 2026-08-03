@@ -6,6 +6,12 @@ import { withBase } from '../lib/paths.js'
 
 const logo = '/assets/Biography-logo.svg'
 
+// Rows of the mobile menu, lifted in behind the unrolling panel.
+const menuRow = {
+  hidden: { opacity: 0, y: 12 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
+}
+
 /**
  * Full-width glass header. Over the hero it is barely-there frosted glass; once the
  * page scrolls onto the light sections it darkens so the white type stays readable.
@@ -112,7 +118,9 @@ export default function SiteHeader({ currentPage = 'HOME', overHero = false }) {
         </div>
       </div>
 
-      {/* Mobile drop-down */}
+      {/* Mobile drop-down — the panel unrolls on a soft ease-out while its rows
+          rise in behind it, so the motion reads as one gesture rather than a
+          box snapping open. */}
       <AnimatePresence>
         {open && (
           <motion.nav
@@ -120,25 +128,50 @@ export default function SiteHeader({ currentPage = 'HOME', overHero = false }) {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            transition={{
+              height: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
+              opacity: { duration: 0.25, ease: 'easeOut' },
+            }}
             className="overflow-hidden border-t border-white/15 bg-primary-black/90 lg:hidden"
           >
-            <ul className="flex flex-col gap-5 px-4 py-6">
+            <motion.ul
+              className="flex flex-col gap-7 px-4 pb-10 pt-8"
+              initial="hidden"
+              animate="show"
+              exit="hidden"
+              variants={{
+                hidden: {},
+                show: { transition: { staggerChildren: 0.05, delayChildren: 0.08 } },
+              }}
+            >
               {navLinks.map((link) => (
-                <li key={link.label}>
+                <motion.li key={link.label} variants={menuRow}>
                   <a
                     href={withBase(link.href)}
                     onClick={() => setOpen(false)}
-                    className="text-[24px] font-light text-white transition-colors hover:text-primary-rose"
+                    className="text-[26px] font-light text-white transition-colors hover:text-primary-rose"
                   >
                     {link.label}
                   </a>
-                </li>
+                </motion.li>
               ))}
-              <li className="pt-2">
+
+              {/* Hotline — the header hides it below `sm`, so the menu carries it */}
+              <motion.li variants={menuRow} className="pt-1">
+                <a
+                  href={`tel:${contactPhone}`}
+                  onClick={() => setOpen(false)}
+                  className="inline-flex items-center gap-2 text-[22px] font-medium text-primary-rose transition-colors hover:text-white"
+                >
+                  <PhoneIcon />
+                  {contactPhone}
+                </a>
+              </motion.li>
+
+              <motion.li variants={menuRow}>
                 <Cta variant="rose" label="Let’s Talk" href="/contact" className="w-full" onClick={() => setOpen(false)} />
-              </li>
-            </ul>
+              </motion.li>
+            </motion.ul>
           </motion.nav>
         )}
       </AnimatePresence>

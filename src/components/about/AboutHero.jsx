@@ -18,7 +18,7 @@ export default function AboutHero() {
           </h1>
         </Reveal>
 
-        <Reveal delay={0.1}>
+        <Reveal delay={0.1} className="w-full sm:w-auto">
           <Cta label="Explore Projects" variant="outline" href="/#projects" />
         </Reveal>
       </div>

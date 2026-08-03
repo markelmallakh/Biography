@@ -3,28 +3,31 @@
 @tailwind utilities;
 
 /*
- * Korpus Grotesk — primary typeface (commercial font).
- * Drop the font files into /public/fonts and these @font-face rules will pick them up.
+ * Korpus Grotesk — primary typeface (commercial font), in /public/fonts.
  * Figma named styles map to weights: B = 400 (Light/Regular), C = 500 (Medium), D = 700 (Bold).
- * Until the licensed files are added, the stack falls back to system-ui so layout/spacing stay correct.
+ * These are the supplied OpenType files; woff2 versions listed first so they take
+ * over automatically if converted copies are dropped in alongside them.
  */
 @font-face {
   font-family: 'Korpus Grotesk';
-  src: url('/fonts/KorpusGrotesk-Regular.woff2') format('woff2');
+  src: url('/fonts/KorpusGrotesk-Regular.woff2') format('woff2'),
+       url('/fonts/KorpusGrotesk-Regular.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Korpus Grotesk';
-  src: url('/fonts/KorpusGrotesk-Medium.woff2') format('woff2');
+  src: url('/fonts/KorpusGrotesk-Medium.woff2') format('woff2'),
+       url('/fonts/KorpusGrotesk-Medium.otf') format('opentype');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Korpus Grotesk';
-  src: url('/fonts/KorpusGrotesk-Bold.woff2') format('woff2');
+  src: url('/fonts/KorpusGrotesk-Bold.woff2') format('woff2'),
+       url('/fonts/KorpusGrotesk-Bold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;

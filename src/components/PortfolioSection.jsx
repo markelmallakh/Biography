@@ -95,7 +95,12 @@ export function StackCard({ card, index, total, progress }) {
   const filter = useMotionTemplate`blur(${blur}px)`
 
   return (
-    <div className="sticky" style={{ top: `calc(90px + ${index * 18}px)`, paddingBottom: '24px' }}>
+    // Sticks higher on phones so a full card clears the browser's bottom bar and
+    // the stacking starts while the card is still rising into view.
+    <div
+      className="sticky [--stack-top:64px] lg:[--stack-top:90px]"
+      style={{ top: `calc(var(--stack-top) + ${index * 18}px)`, paddingBottom: '24px' }}
+    >
       <motion.div style={{ scale, filter, transformOrigin: 'center top' }}>
         <PropertyCard {...card} />
       </motion.div>
@@ -160,7 +165,7 @@ export function PropertyCard({ slug, name, location, type, desc, large, smalls, 
     <a
       ref={largeRef}
       href={withBase(href)}
-      className={`group relative block h-[260px] w-full shrink-0 sm:h-[380px] lg:h-[517px] lg:w-[620px] ${dark ? 'lg:order-2' : ''}`}
+      className={`group relative block h-[200px] w-full shrink-0 sm:h-[340px] lg:h-[517px] lg:w-[620px] ${dark ? 'lg:order-2' : ''}`}
     >
       <ParallaxImage src={large} alt={name} className="h-full w-full" hover />
     </a>
@@ -172,7 +177,7 @@ export function PropertyCard({ slug, name, location, type, desc, large, smalls, 
         <div key={i} ref={smallRefs[i]} className="min-w-0 flex-1">
           <ParallaxImage
             src={src}
-            className="h-[92px] w-full sm:h-[180px] lg:h-[248px]"
+            className="h-[76px] w-full sm:h-[160px] lg:h-[248px]"
             imgClassName={i === 1 ? 'object-top' : ''}
             strength={28}
           />
@@ -189,8 +194,8 @@ export function PropertyCard({ slug, name, location, type, desc, large, smalls, 
   )
 
   const Content = (
-    <div className={`flex min-w-0 flex-1 flex-col justify-between gap-6 self-stretch lg:gap-10 ${dark ? 'lg:order-1' : ''}`}>
-      <div className="flex flex-col gap-5 lg:gap-8">
+    <div className={`flex min-w-0 flex-1 flex-col justify-between gap-4 self-stretch lg:gap-10 ${dark ? 'lg:order-1' : ''}`}>
+      <div className="flex flex-col gap-4 lg:gap-8">
         <div className="flex flex-col gap-2">
           <h3 className="text-m-h3 font-bold leading-[1.2] lg:text-h3">{name}</h3>
           <span className={`inline-flex w-fit items-center gap-2 px-1 py-0.5 ${pillBg}`}>
@@ -200,7 +205,8 @@ export function PropertyCard({ slug, name, location, type, desc, large, smalls, 
           </span>
           <p className={`max-w-[604px] text-regular-light font-light ${muted}`}>{desc}</p>
         </div>
-        <Cta variant="rose" size="small" label={`Explore ${name}`} href={withBase(href)} className="w-fit" />
+        {/* Cta applies the base itself — pass the raw route */}
+        <Cta variant="rose" size="small" label={`Explore ${name}`} href={href} className="w-fit" />
       </div>
       <div className="flex items-end justify-between gap-4 lg:gap-6">
         {SmallImages}
@@ -215,7 +221,7 @@ export function PropertyCard({ slug, name, location, type, desc, large, smalls, 
       onMouseMove={onMove}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className={`relative flex flex-col gap-5 overflow-hidden p-4 lg:flex-row lg:items-center lg:gap-6 lg:p-8 ${
+      className={`relative flex flex-col gap-4 overflow-hidden p-4 lg:flex-row lg:items-center lg:gap-6 lg:p-8 ${
         dark ? 'bg-primary-black text-primary-white' : 'bg-primary-offwhite text-primary-black'
       }`}
     >

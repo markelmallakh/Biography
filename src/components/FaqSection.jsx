@@ -10,14 +10,14 @@ export default function FaqSection() {
   return (
     <section id="faqs" className="flex flex-col lg:h-screen lg:flex-row">
       {/* Left media */}
-      <div className="h-[420px] w-full overflow-hidden lg:h-auto lg:w-[632px] lg:shrink-0">
+      <div className="h-[260px] w-full overflow-hidden lg:h-auto lg:w-[632px] lg:shrink-0">
         <img src="/assets/home-hero.png" alt="" className="h-full w-full object-cover" />
       </div>
 
-      {/* Right accordion panel */}
-      <div className="flex flex-1 flex-col justify-center gap-[60px] bg-primary-black p-[60px]">
+      {/* Right accordion panel — page gutter on phones, roomy inset from `lg` */}
+      <div className="flex flex-1 flex-col justify-center gap-10 bg-primary-black px-4 py-14 lg:gap-[60px] lg:p-[60px]">
         <Reveal className="flex flex-col gap-2">
-          <h2 className="text-h3 font-bold leading-[1.2] text-primary-white">Frequently Asked Questions</h2>
+          <h2 className="text-m-h2 font-bold leading-[1.2] text-primary-white lg:text-h3">Frequently Asked Questions</h2>
           <p className="text-regular-light font-light text-text-secondary-light">
             Find answers to common questions about Biography
           </p>
@@ -69,7 +69,7 @@ export default function FaqSection() {
           })}
         </Reveal>
 
-        <Reveal delay={0.15}>
+        <Reveal delay={0.15} className="w-full sm:w-auto">
           <Cta label="Explore All FAQs" href="/faqs" variant="outlineWhite" />
         </Reveal>
       </div>

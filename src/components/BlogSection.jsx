@@ -35,7 +35,7 @@ export default function BlogSection() {
         ))}
       </div>
 
-      <Reveal delay={0.1}>
+      <Reveal delay={0.1} className="w-full px-4 sm:w-auto sm:px-0">
         <Cta label="Read More" variant="outline" href="#media" />
       </Reveal>
     </section>

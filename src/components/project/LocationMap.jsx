@@ -239,7 +239,9 @@ export default function LocationMap({ project, coords, landmarks, logo }) {
         ref={hostRef}
         role="application"
         aria-label={`Map of ${project} and nearby landmarks`}
-        className="h-[320px] w-full bg-gray-1 lg:h-[427px]"
+        /* `isolate` scopes Leaflet's own z-indexes (panes 400, controls 1000) to
+           this box, so the map can't paint over the fixed header. */
+        className="isolate h-[320px] w-full bg-gray-1 lg:h-[427px]"
       />
     </div>
   )

@@ -1,6 +1,7 @@
 import Reveal from '../components/Reveal.jsx'
 import Cursor from '../components/ui/Cursor.jsx'
 import Field from '../components/ui/Field.jsx'
+import ParallaxImage from '../components/ui/ParallaxImage.jsx'
 import FooterSection from '../components/FooterSection.jsx'
 import SectionReveal from '../components/SectionReveal.jsx'
 import { projects } from '../data/projects.js'
@@ -26,13 +27,13 @@ export default function ContactPage() {
     <main>
       <section id="contact" className="bg-primary-rose px-4 pb-16 pt-[120px] lg:px-[60px]">
         <Reveal className="mx-auto flex w-full max-w-[1392px] flex-col overflow-hidden bg-primary-white lg:flex-row">
-          <img
+          <ParallaxImage
             src="/assets/about-3.png"
-            alt=""
-            className="h-[280px] w-full object-cover lg:h-auto lg:w-[46%]"
+            strength={70}
+            className="h-[280px] w-full lg:h-auto lg:w-[46%]"
           />
 
-          <div className="flex flex-1 flex-col gap-8 p-8 lg:p-12">
+          <div className="flex flex-1 flex-col gap-8 p-6 sm:p-8 lg:p-12">
             <div className="flex flex-col gap-2">
               <p className="text-regular-normal font-medium text-text-secondary-dark">
                 <Cursor />Get in Touch
