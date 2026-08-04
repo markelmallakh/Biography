@@ -10,7 +10,7 @@ export default function FaqSection() {
   return (
     <section id="faqs" className="flex flex-col lg:h-screen lg:flex-row">
       {/* Left media */}
-      <div className="h-[260px] w-full overflow-hidden lg:h-auto lg:w-[632px] lg:shrink-0">
+      <div className="h-[260px] w-full overflow-hidden lg:h-auto lg:w-[52%] lg:max-w-[860px] lg:shrink-0">
         <img src="/assets/home-hero.png" alt="" className="h-full w-full object-cover" />
       </div>
 
@@ -58,7 +58,7 @@ export default function FaqSection() {
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                      className="overflow-hidden text-regular-light font-light text-text-secondary-light"
+                      className="overflow-hidden text-[18px] font-light leading-[1.6] text-text-secondary-light"
                     >
                       {item.a}
                     </motion.p>

@@ -118,23 +118,26 @@ export default function SiteHeader({ currentPage = 'HOME', overHero = false }) {
           ))}
         </nav>
 
+        {/* The CTA scales up first, the hotline slides in just behind it */}
         <div className="flex shrink-0 items-center gap-5">
-          <a
-            href={`tel:${contactPhone}`}
-            className="hidden items-center gap-1 text-lg-normal font-medium text-white transition-colors hover:text-primary-rose sm:flex"
-          >
-            <PhoneIcon />
-            {contactPhone}
-          </a>
           <Cta
             variant="white"
             size="small"
             label="Let’s Talk"
             href="/contact"
-            className={`hidden w-[134px] transition-all duration-500 sm:inline-flex ${
-              ctaShown ? 'translate-y-0 opacity-100' : 'pointer-events-none -translate-y-1 opacity-0'
+            className={`hidden w-[134px] origin-right transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] sm:inline-flex ${
+              ctaShown ? 'scale-100 opacity-100' : 'pointer-events-none scale-90 opacity-0'
             }`}
           />
+          <a
+            href={`tel:${contactPhone}`}
+            className={`hidden items-center gap-1 text-lg-normal font-medium text-white transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-primary-rose sm:flex ${
+              ctaShown ? 'translate-x-0 opacity-100 delay-150' : 'pointer-events-none translate-x-3 opacity-0'
+            }`}
+          >
+            <PhoneIcon />
+            {contactPhone}
+          </a>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
