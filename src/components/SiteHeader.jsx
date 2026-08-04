@@ -36,6 +36,27 @@ export default function SiteHeader({ currentPage = 'HOME', overHero = false }) {
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
+  /*
+   * The bar's own CTA would compete with the hero's on the home page, so it
+   * waits: hidden until the hero CTA (`#hero-cta`) has scrolled up out of view.
+   * Pages without that anchor — every page but home — show it immediately.
+   */
+  const [ctaShown, setCtaShown] = useState(true)
+  useEffect(() => {
+    const anchor = document.getElementById('hero-cta')
+    if (!anchor) {
+      setCtaShown(true)
+      return undefined
+    }
+    setCtaShown(false)
+    const io = new IntersectionObserver(
+      ([entry]) => setCtaShown(!entry.isIntersecting && entry.boundingClientRect.top < 0),
+      { threshold: 0 }
+    )
+    io.observe(anchor)
+    return () => io.disconnect()
+  }, [currentPage])
+
   // The open menu owns the screen: hold the page still behind the scrim.
   useEffect(() => {
     if (!open) return undefined
@@ -105,7 +126,15 @@ export default function SiteHeader({ currentPage = 'HOME', overHero = false }) {
             <PhoneIcon />
             {contactPhone}
           </a>
-          <Cta variant="white" size="small" label="Let’s Talk" href="/contact" className="hidden w-[134px] sm:inline-flex" />
+          <Cta
+            variant="white"
+            size="small"
+            label="Let’s Talk"
+            href="/contact"
+            className={`hidden w-[134px] transition-all duration-500 sm:inline-flex ${
+              ctaShown ? 'translate-y-0 opacity-100' : 'pointer-events-none -translate-y-1 opacity-0'
+            }`}
+          />
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
