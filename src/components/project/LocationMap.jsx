@@ -43,11 +43,11 @@ export const directionsHref = ({ project, landmark }) =>
  */
 const COMPACT_MQ = '(max-width: 639px)'
 
-// The pin is sized off the viewport: at 76px it eats a phone-sized map frame.
+// The pin is sized off the viewport: kept modest so it never dominates the frame.
 const projectIcon = (logo, compact) => {
-  const size = compact ? 48 : 76
-  const ring = compact ? 5 : 8
-  const [w, h] = compact ? [28, 17] : [44, 26]
+  const size = compact ? 44 : 56
+  const ring = compact ? 4 : 5
+  const [w, h] = compact ? [26, 15] : [32, 19]
   return L.divIcon({
     className: '',
     iconSize: [size, size],

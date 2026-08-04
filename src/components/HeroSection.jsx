@@ -65,7 +65,7 @@ export default function HeroSection() {
 
       {/* The header watches this: its own CTA only appears once this scrolls past */}
       <motion.div id="hero-cta" variants={rise} initial="hidden" animate="show" className="relative w-full sm:w-auto">
-        <Cta variant="white" label="Let's Talk" href="/contact" />
+        <Cta variant="white" size="large" label="Let's Talk" href="/contact" className="sm:min-w-[240px]" />
       </motion.div>
     </section>
   )
